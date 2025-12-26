@@ -112,4 +112,21 @@ volumes:
 6. Остановите проект. В качестве ответа приложите скриншот sql-запроса.
 ![04-docker-in-practice-3-3](images/4-3-3.png)
 
+## Задача 4
+1. Запустите в Yandex Cloud ВМ (вам хватит 2 Гб Ram).
+2. Подключитесь к Вм по ssh и установите docker.
+3. Напишите bash-скрипт, который скачает ваш fork-репозиторий в каталог /opt и запустит проект целиком.
+
+[Скрипт](images/gitclon.sh)
+
+4. Зайдите на сайт проверки http подключений, например(или аналогичный): https://check-host.net/check-http и запустите проверку вашего сервиса http://<внешний_IP-адрес_вашей_ВМ>:8090. Таким образом трафик будет направлен в ingress-proxy. Трафик должен пройти через цепочки: Пользователь → Internet → Nginx → HAProxy → FastAPI(запись в БД) → HAProxy → Nginx → Internet → Пользователь
+![04-docker-in-practice-4-1](images/4-4-1.png)
+
+
+6. Повторите SQL-запрос на сервере и приложите скриншот и ссылку на fork.
+![04-docker-in-practice-4-2](images/4-4-2.png)
+
+https://github.com/Dim223/shvirtd-example-python#
+
+
 
