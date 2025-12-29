@@ -15,6 +15,9 @@
 Dockerfile
 LICENSE
 README.md
+haproxy/
+nginx/
+Dockerfile.python
 ```
 * Используйте CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"] для запуска
 ```docker
