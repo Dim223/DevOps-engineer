@@ -143,8 +143,37 @@ volumes:
 https://github.com/Dim223/shvirtd-example-python#
 
 ## Задача 5
+```text
+При попытке запуска через schnitzler/mysqldump возникает ошибка:
+mysqldump: Got error: 1045: "Plugin caching_sha2_password could not be loaded: Error loading shared library /usr/lib/mariadb/plugin/caching_sha2_password.so: No such file or directory" when trying to connect
+авторизация через mysql_native_password работает:
+caching_sha2_password   ACTIVE  AUTHENTICATION  NULL    GPL
+mysql_native_password   ACTIVE  AUTHENTICATION  NULL    GPL
+пробуем через exec  mysqldump
+Создаем скрипт:
+
+#!/bin/bash
+
+CONTAINER="gitclone-db-1"
+DB_USER="root"
+DB_PASS="YtReWq4321"
+DB_NAME="virtd"
+BACKUP_DIR="/backup"
 
 
+# Формируем имя файла
+TIMESTAMP=$(date +\%d.\%m.\%Y_\%H.\%M)
+BACKUP_FILE="$BACKUP_DIR/dump_${TIMESTAMP}.sql"
+
+# Выполняем backup
+sudo docker exec "$CONTAINER" sh -c \
+  "mysqldump -u '$DB_USER' -p'$DB_PASS' '$DB_NAME' > '$BACKUP_FILE'"
+
+Добавляем задание в crontab
+sudo crontab -e
+* * * * * /usr/local/bin/mysqldump.sh >> /var/log/mysql-backup.log 2>&1
+```
+![05-docker-in-practice-1-1](images/5-1-1.png)
 
 ## Задача 6
 Скачайте docker образ hashicorp/terraform:latest и скопируйте бинарный файл /bin/terraform на свою локальную машину, используя dive и docker save. Предоставьте скриншоты действий .
