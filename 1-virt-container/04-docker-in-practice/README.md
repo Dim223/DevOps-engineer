@@ -153,5 +153,19 @@ dive hashicorp/terraform
 ```
 ![06-docker-in-practice-1-4](images/6-1-4.png)
 
+## Задача 6.2 (**)
+Предложите способ извлечь файл из контейнера, используя только команду docker build и любой Dockerfile.
+Предоставьте скриншоты действий .
+```text
+Воспользуемся multistage сборкой. Dockerfile:
+```
+```docker
+FROM hashicorp/terraform AS builder
 
-
+FROM scratch AS export
+COPY --from=builder /bin/terraform /terraform
+```
+```bash
+docker build  --output type=local,dest=$(pwd)/output -t terraform-exporter .
+```
+![06-docker-in-practice-1-5](images/6-1-5.png)
