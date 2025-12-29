@@ -27,6 +27,17 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
 ```
 * Протестируйте корректность сборки
 ![04-docker-in-practice-1-1](images/4-1-1.png)
+4. (Необязательная часть, *) Изучите код приложения и добавьте управление названием таблицы через ENV переменную.
+```python
+В блоке # --- 1. Конфигурация ---
+Добавляем переменную:
+db_table = os.environ.get('DB_TABLE', 'example')
+Далее в коде приложения меняем requests на db_table
+В .env добавляем
+MYSQL_TABLE="requests"
+В compose.yaml, в environment сервиса web добавляем 
+      - DB_TABLE=${MYSQL_TABLE}
+```
 
 ## Задача 2 (*)
 1. Создайте в yandex cloud container registry с именем "test" с помощью "yc tool" . 
