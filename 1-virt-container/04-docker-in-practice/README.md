@@ -128,5 +128,30 @@ volumes:
 
 https://github.com/Dim223/shvirtd-example-python#
 
+## Задача 5
+
+
+
+## Задача 6
+Скачайте docker образ hashicorp/terraform:latest и скопируйте бинарный файл /bin/terraform на свою локальную машину, используя dive и docker save. Предоставьте скриншоты действий .
+```text
+Устанавливаем dive и смотрим слои котейнера
+dive hashicorp/terraform
+```
+![06-docker-in-practice-1-1](images/6-1-1.png)
+```text
+Извлекаем в архив образ, ищем и распаковывам нужный слой.
+```
+![06-docker-in-practice-1-2](images/6-1-2.png)
+![06-docker-in-practice-1-3](images/6-1-3.png)
+
+## Задача 6.1
+Добейтесь аналогичного результата, используя docker cp.
+Предоставьте скриншоты действий .
+```text
+Создадим контейнер из образа hashicorp/terraform и скопируем terraform из /bin
+```
+![06-docker-in-practice-1-4](images/6-1-4.png)
+
 
 
