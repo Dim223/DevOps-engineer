@@ -75,6 +75,21 @@ resource "docker_container" "nginx" {
 В блоке образа docker указан параметр хранить локально 'keep_locally = true'
 "keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation."
 ```
+## Задание 2
+1. Создайте в облаке ВМ. Сделайте это через web-консоль
+![01-introduction-terraform](images/2-1-2-1.png)
+2. Подключитесь к ВМ по ssh и установите стек docker.
+![01-introduction-terraform](images/2-1-2-2.png)
+3. Найдите в документации docker provider способ настроить подключение terraform на вашей рабочей станции к remote docker context вашей ВМ через ssh.
+```text
+context (String) The name of the Docker context to use. Can also be set via DOCKER_CONTEXT environment variable. Overrides the host if set.
+```
+4. Используя terraform и remote docker context, скачайте и запустите на вашей ВМ контейнер mysql:8 на порту 127.0.0.1:3306, передайте ENV-переменные. Сгенерируйте разные пароли через random_password и передайте их в контейнер, используя интерполяцию из примера с nginx.(name  = "example_${random_password.random_string.result}" , двойные кавычки и фигурные скобки обязательны!)
+![01-introduction-terraform](images/2-1-2-3.png)
+5. Зайдите на вашу ВМ , подключитесь к контейнеру и проверьте наличие секретных env-переменных с помощью команды env. Запишите ваш финальный код в репозиторий.
+![01-introduction-terraform](images/2-1-2-4.png)
+
+[Финальный код terraform файла](images/main.tf)
 
 ## Задание 3
 1. Установите opentofu(fork terraform с лицензией Mozilla Public License, version 2.0) любой версии
