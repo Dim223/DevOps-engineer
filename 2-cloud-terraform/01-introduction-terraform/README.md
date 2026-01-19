@@ -1,10 +1,10 @@
 # 1. Введение в Terraform
 
 Скачайте и установите Terraform версии >=1.12.0 . Приложите скриншот вывода команды terraform --version.
-![01-introduction-terraform](images/2-1-0-1.png)
+![01-introduction-terraform-2-1-0-1](images/2-1-0-1.png)
 ## Задание 1
 1. Перейдите в каталог src. Скачайте все необходимые зависимости, использованные в проекте.
-![01-introduction-terraform](images/2-1-1-1.png)
+![01-introduction-terraform-2-1-1-1](images/2-1-1-1.png)
 2. Изучите файл .gitignore. В каком terraform-файле, согласно этому .gitignore, допустимо сохранить личную, секретную информацию?(логины,пароли,ключи,токены итд)
 ```text
 В файле personal.auto.tfvars
@@ -58,7 +58,7 @@ resource "docker_container" "nginx" {
 }
 
 ```
-![01-introduction-terraform](images/2-1-5-1.png)
+![01-introduction-terraform-2-1-5-1](images/2-1-5-1.png)
 6. Замените имя docker-контейнера в блоке кода на hello_world. Не перепутайте имя контейнера и имя образа. Мы всё ещё продолжаем использовать name = "nginx:latest". Выполните команду terraform apply -auto-approve. Объясните своими словами, в чём может быть опасность применения ключа -auto-approve. Догадайтесь или нагуглите зачем может пригодиться данный ключ? В качестве ответа дополнительно приложите вывод команды docker ps.
 ```text
 Автоматическое выполнение без проверки и подтверждения может привести к применению некорректных конфигураций.
@@ -66,10 +66,10 @@ resource "docker_container" "nginx" {
 Ключ -auto-approve может пригодиться для запуска автоматизированных процедур, например CI/CD. 
 Но только после успешного тестирования.
 ```
-![01-introduction-terraform](images/2-1-6-1.png)
+![01-introduction-terraform -2-1-6-1](images/2-1-6-1.png)
 
 7. Уничтожьте созданные ресурсы с помощью terraform. Убедитесь, что все ресурсы удалены. Приложите содержимое файла terraform.tfstate.
-![01-introduction-terraform](images/2-1-7-1.png)
+![01-introduction-terraform-2-1-7-1](images/2-1-7-1.png)
 8. Объясните, почему при этом не был удалён docker-образ nginx:latest. Ответ ОБЯЗАТЕЛЬНО НАЙДИТЕ В ПРЕДОСТАВЛЕННОМ КОДЕ, а затем ОБЯЗАТЕЛЬНО ПОДКРЕПИТЕ строчкой из документации terraform провайдера docker. (ищите в классификаторе resource docker_image )
 ```text
 В блоке образа docker указан параметр хранить локально 'keep_locally = true'
@@ -80,24 +80,25 @@ resource "docker_container" "nginx" {
 ![01-introduction-terraform-2-1-2-1](images/2-1-2-1.png)
 
 2. Подключитесь к ВМ по ssh и установите стек docker.
+
 ![01-introduction-terraform-2-1-2-2](images/2-1-2-2.png)
 
-3. Найдите в документации docker provider способ настроить подключение terraform на вашей рабочей станции к remote docker context вашей ВМ через ssh.
+1. Найдите в документации docker provider способ настроить подключение terraform на вашей рабочей станции к remote docker context вашей ВМ через ssh.
 ```text
 context (String) The name of the Docker context to use. Can also be set via DOCKER_CONTEXT environment variable. Overrides the host if set.
 ```
-4. Используя terraform и remote docker context, скачайте и запустите на вашей ВМ контейнер mysql:8 на порту 127.0.0.1:3306, передайте ENV-переменные. Сгенерируйте разные пароли через random_password и передайте их в контейнер, используя интерполяцию из примера с nginx.(name  = "example_${random_password.random_string.result}" , двойные кавычки и фигурные скобки обязательны!)
-![01-introduction-terraform](images/2-1-2-3.png)
-5. Зайдите на вашу ВМ , подключитесь к контейнеру и проверьте наличие секретных env-переменных с помощью команды env. Запишите ваш финальный код в репозиторий.
+1. Используя terraform и remote docker context, скачайте и запустите на вашей ВМ контейнер mysql:8 на порту 127.0.0.1:3306, передайте ENV-переменные. Сгенерируйте разные пароли через random_password и передайте их в контейнер, используя интерполяцию из примера с nginx.(name  = "example_${random_password.random_string.result}" , двойные кавычки и фигурные скобки обязательны!)
+![01-introduction-terraform-2-1-2-3](images/2-1-2-3.png)
+1. Зайдите на вашу ВМ , подключитесь к контейнеру и проверьте наличие секретных env-переменных с помощью команды env. Запишите ваш финальный код в репозиторий.
 ![01-introduction-terraform](images/2-1-2-4.png)
 
-[Финальный код terraform файла](images/main.tf)
+[Финальный код terraform файла-2-1-2-4](images/main.tf)
 
 ## Задание 3
 1. Установите opentofu(fork terraform с лицензией Mozilla Public License, version 2.0) любой версии
-![01-introduction-terraform](images/2-1-7-2.png)
+![01-introduction-terraform-2-1-7-2](images/2-1-7-2.png)
 2. Попробуйте выполнить тот же код с помощью tofu apply, а не terraform apply.
-![01-introduction-terraform](images/2-1-7-4.png)
+![01-introduction-terraform-2-1-7-4](images/2-1-7-4.png)
 
 ```text
 На текущий момент  OpenTofu приняли решение закрыть доступ к своему реестру с российских IP-адресов и удалить провайдеров российских облачных сервисов, таких как Yandex Cloud, Cloud.ru (бывший SberCloud) и Rustack Cloud Platform.
