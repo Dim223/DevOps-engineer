@@ -77,10 +77,10 @@ resource "docker_container" "nginx" {
 ```
 ## Задание 2
 1. Создайте в облаке ВМ. Сделайте это через web-консоль
-![01-introduction-terraform](images/2-1-2-1.png)
+![01-introduction-terraform-2-1-2-1](images/2-1-2-1.png)
 
 2. Подключитесь к ВМ по ssh и установите стек docker.
-![01-introduction-terraform](images/2-1-2-2.png)
+![01-introduction-terraform-2-1-2-2](images/2-1-2-2.png)
 
 3. Найдите в документации docker provider способ настроить подключение terraform на вашей рабочей станции к remote docker context вашей ВМ через ssh.
 ```text
