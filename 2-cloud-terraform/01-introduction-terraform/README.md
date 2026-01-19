@@ -28,7 +28,7 @@ terraform {
       
     }
   }
-  required_version = "~>1.12.0" 
+#  required_version = "~>1.12.0" 
 }
 provider "docker" {}
 
@@ -74,4 +74,14 @@ resource "docker_container" "nginx" {
 ```text
 В блоке образа docker указан параметр хранить локально 'keep_locally = true'
 "keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation."
+```
+
+## Задание 3
+1. Установите opentofu(fork terraform с лицензией Mozilla Public License, version 2.0) любой версии
+![01-introduction-terraform](images/2-1-7-2.png)
+2. Попробуйте выполнить тот же код с помощью tofu apply, а не terraform apply.
+![01-introduction-terraform](images/2-1-7-4.png)
+
+```text
+На текущий момент  OpenTofu приняли решение закрыть доступ к своему реестру с российских IP-адресов и удалить провайдеров российских облачных сервисов, таких как Yandex Cloud, Cloud.ru (бывший SberCloud) и Rustack Cloud Platform.
 ```
