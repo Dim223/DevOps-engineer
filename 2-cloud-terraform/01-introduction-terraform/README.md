@@ -92,7 +92,7 @@ context (String) The name of the Docker context to use. Can also be set via DOCK
 6. Зайдите на вашу ВМ , подключитесь к контейнеру и проверьте наличие секретных env-переменных с помощью команды env. Запишите ваш финальный код в репозиторий.
 ![01-introduction-terraform](images/2-1-2-4.png)
 
-[Финальный код terraform файла-2-1-2-4](images/main.tf)
+[Финальный код terraform файла](images/main.tf)
 
 ## Задание 3
 1. Установите opentofu(fork terraform с лицензией Mozilla Public License, version 2.0) любой версии
