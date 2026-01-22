@@ -101,5 +101,7 @@ context (String) The name of the Docker context to use. Can also be set via DOCK
 ![01-introduction-terraform-2-1-7-4](images/2-1-7-4.png)
 
 ```text
-На текущий момент  OpenTofu приняли решение закрыть доступ к своему реестру с российских IP-адресов и удалить провайдеров российских облачных сервисов, таких как Yandex Cloud, Cloud.ru (бывший SberCloud) и Rustack Cloud Platform.
+На текущий момент  OpenTofu приняли решение закрыть доступ к своему реестру с
+ российских IP-адресов и удалить провайдеров российских облачных сервисов, 
+ таких как Yandex Cloud, Cloud.ru (бывший SberCloud) и Rustack Cloud Platform.
 ```
