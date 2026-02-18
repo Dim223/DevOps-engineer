@@ -16,8 +16,7 @@
 7. При помощи ansible-vault зашифруйте факты в group_vars/deb и group_vars/el с паролем netology.
 ![3-1-7-1](images/3-1-7-1.png)
 
-8. Запустите playbook на окружении prod.yml. При запуске ansible должен запросить у вас пароль. Убедитесь в работоспособности.
-![3-1-7-1](images/3-1-7-1.png)
+
 
 
 
