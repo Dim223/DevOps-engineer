@@ -1,0 +1,6 @@
+lighthouse_repo: "https://github.com/VKCOM/lighthouse.git"
+lighthouse_path: "/var/www/lighthouse"
+
+lighthouse_host: "192.168.3.192"
+lighthouse_port: 3000
+lighthouse_access_log_name: lighthouse_access
