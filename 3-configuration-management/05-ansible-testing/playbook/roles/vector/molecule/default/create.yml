@@ -1,0 +1,47 @@
+
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Create Docker containers
+      community.docker.docker_container:
+        name: "{{ item.name }}"
+        image: "{{ item.image }}"
+        state: started
+        detach: true
+        tty: true
+        command: "/bin/bash"
+        networks:
+          - name: bridge
+      loop: "{{ molecule_yml.platforms }}"
+      register: server
+
+    - name: Populate instance config dict
+      set_fact:
+        instance_conf_list: >-
+          {{
+            instance_conf_list | default([]) + [{
+              'instance': item.item.name,
+              'address': (
+                item.container.NetworkSettings.IPAddress
+                if item.container and item.container.NetworkSettings and item.container.NetworkSettings.IPAddress
+                else '127.0.0.1'
+              ),
+              'user': item.item.user | default('root'),
+              'port': '22',
+              'identity_file': molecule_ephemeral_directory ~ '/' ~ item.item.name ~ '_id_rsa'
+            }]
+          }}
+      loop: "{{ server.results }}"
+      when: item is success
+
+    - name: Dump instance config
+      copy:
+        content: |
+          # Molecule managed
+
+          {{ instance_conf_list | to_yaml }}
+        dest: "{{ molecule_instance_config }}"
+        mode: "0600"

@@ -1,0 +1,12 @@
+
+---
+- name: Prepare containers
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ensure remote tmp directory exists
+      file:
+        path: /tmp/.ansible-{{ lookup('env', 'USER') }}/tmp
+        state: directory
+        mode: '0700'
+        recurse: true

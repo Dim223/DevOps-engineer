@@ -1,0 +1,10 @@
+#SPDX-License-Identifier: MIT-0
+---
+- name: Start vector service
+  ansible.builtin.service:
+    name: vector
+    state: restarted
+  tags:
+    - vector
+    - restartservice
+

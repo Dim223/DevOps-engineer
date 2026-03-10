@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: Dmitry Osipov
+  description: This is a role to install Vector.
+  company: D.A.O
+
+  license: MIT
+  min_ansible_version: 2.19
+
+  namespace: my_galaxy_namespace
+  role_name: vector
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - "22.04"
+        - "20.04"
+    - name: Debian
+      versions:
+        - "11"
+        - "12"
+
+  galaxy_tags: []
+
+dependencies: []
