@@ -14,6 +14,7 @@
 ![3-5-1-3](images/3-5-1-3.png) 
 
 [Ссылка на полный лог molecule test](images/molecule.log)</br>
+[Тэг 1.0.2](https://github.com/Dim223/DevOps-engineer/tree/1.0.2/3-configuration-management/05-ansible-testing)</br>
 
 
 1. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
