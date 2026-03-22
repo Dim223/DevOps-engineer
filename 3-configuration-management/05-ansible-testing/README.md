@@ -14,7 +14,7 @@
 ![3-5-1-3](images/3-5-1-3.png) 
 
 [Ссылка на полный лог molecule test](images/molecule.log)</br>
-[Тэг 1.0.2](https://github.com/Dim223/DevOps-engineer/tree/1.0.2/3-configuration-management/05-ansible-testing)</br>
+[Тег 1.0.2](https://github.com/Dim223/DevOps-engineer/tree/1.0.2/3-configuration-management/05-ansible-testing)</br>
 
 
 1. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
@@ -28,6 +28,7 @@
 ![3-5-1-4](images/3-5-1-4.png) 
 
 [Ссылка на полный лог tox](images/tox.log)</br>
+[Тег 1.0.3]([images/tox.log](https://github.com/Dim223/DevOps-engineer/tree/1.0.3/3-configuration-management/05-ansible-testing))</br>
 
 1. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 После выполнения у вас должно получится два сценария molecule и один tox.ini файл в репозитории. Не забудьте указать в ответе теги решений Tox и Molecule заданий. В качестве решения пришлите ссылку на ваш репозиторий и скриншоты этапов выполнения задания.
