@@ -1,0 +1,257 @@
+[root@d63b19a6c9c3 vector-role]# tox
+py39-ansible80 recreate: /opt/vector-role/.tox/py39-ansible80
+py39-ansible80 installdeps: -rtox-requirements.txt, ansible>8.0
+py39-ansible80 installed: ansible==8.7.0,ansible-compat==24.10.0,ansible-core==2.15.13,attrs==26.1.0,bracex==2.6,cffi==2.0.0,click==8.1.8,click-help-colors==0.9.4,cryptography==46.0.5,distro==1.9.0,enrich==1.2.7,importlib-resources==5.0.7,Jinja2==3.1.6,jmespath==1.1.0,jsonschema==4.25.1,jsonschema-specifications==2025.9.1,lxml==6.0.2,markdown-it-py==3.0.0,MarkupSafe==3.0.3,mdurl==0.1.2,molecule==6.0.3,molecule-podman==2.0.3,packaging==26.0,pluggy==1.6.0,pycparser==2.23,Pygments==2.19.2,PyYAML==6.0.3,referencing==0.36.2,resolvelib==1.0.1,rich==14.3.3,rpds-py==0.27.1,selinux==0.3.0,subprocess-tee==0.4.2,typing_extensions==4.15.0,wcmatch==10.1
+py39-ansible80 run-test-pre: PYTHONHASHSEED='3658349698'
+py39-ansible80 run-test: commands[0] | molecule test -s compatibility --destroy always
+WARNING  Driver podman does not provide a schema.
+INFO     compatibility scenario test matrix: destroy, create, converge, destroy
+INFO     Performing prerun with role_name_check=1...
+INFO     Running compatibility > destroy
+INFO     Sanity checks: 'podman'
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': 'j966561776777.5684', 'results_file': '/root/.ansible_async/j966561776777.5684', 'changed': True, 'item': {'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Running compatibility > create
+
+PLAY [Create] ******************************************************************
+
+TASK [get podman executable path] **********************************************
+ok: [localhost]
+
+TASK [save path to executable as fact] *****************************************
+ok: [localhost]
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Log into a container registry] *******************************************
+skipping: [localhost] => (item="ubuntu2404 registry username: None specified") 
+skipping: [localhost]
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item=Dockerfile: None specified)
+
+TASK [Create Dockerfiles from image names] *************************************
+skipping: [localhost] => (item="Dockerfile: None specified; Image: geerlingguy/docker-ubuntu2404-ansible:latest") 
+skipping: [localhost]
+
+TASK [Discover local Podman images] ********************************************
+ok: [localhost] => (item=ubuntu2404)
+
+TASK [Build an Ansible compatible image] ***************************************
+skipping: [localhost] => (item=geerlingguy/docker-ubuntu2404-ansible:latest) 
+skipping: [localhost]
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item="ubuntu2404 command: ")
+
+TASK [Remove possible pre-existing containers] *********************************
+changed: [localhost]
+
+TASK [Discover local podman networks] ******************************************
+skipping: [localhost] => (item=ubuntu2404: None specified) 
+skipping: [localhost]
+
+TASK [Create podman network dedicated to this scenario] ************************
+skipping: [localhost]
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=ubuntu2404)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) creation to complete (300 retries left).
+changed: [localhost] => (item=ubuntu2404)
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=9    changed=3    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+
+INFO     Running compatibility > converge
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ubuntu2404]
+
+TASK [Include role] ************************************************************
+
+TASK [vector-role : Get vector distrib] ****************************************
+changed: [ubuntu2404]
+
+TASK [vector-role : Update apt cache] ******************************************
+changed: [ubuntu2404]
+
+TASK [vector-role : Install vector] ********************************************
+ok: [ubuntu2404]
+
+TASK [vector-role : Deploy vector configuration] *******************************
+changed: [ubuntu2404]
+
+TASK [vector-role : Flush handlers] ********************************************
+
+RUNNING HANDLER [vector-role : Start vector service] ***************************
+changed: [ubuntu2404]
+
+PLAY RECAP *********************************************************************
+ubuntu2404                 : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Running compatibility > destroy
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': 'j280890938131.7289', 'results_file': '/root/.ansible_async/j280890938131.7289', 'changed': True, 'item': {'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
+py39-ansible70 recreate: /opt/vector-role/.tox/py39-ansible70
+py39-ansible70 installdeps: -rtox-requirements.txt, ansible>=7.0
+py39-ansible70 installed: ansible==8.7.0,ansible-compat==24.10.0,ansible-core==2.15.13,attrs==26.1.0,bracex==2.6,cffi==2.0.0,click==8.1.8,click-help-colors==0.9.4,cryptography==46.0.5,distro==1.9.0,enrich==1.2.7,importlib-resources==5.0.7,Jinja2==3.1.6,jmespath==1.1.0,jsonschema==4.25.1,jsonschema-specifications==2025.9.1,lxml==6.0.2,markdown-it-py==3.0.0,MarkupSafe==3.0.3,mdurl==0.1.2,molecule==6.0.3,molecule-podman==2.0.3,packaging==26.0,pluggy==1.6.0,pycparser==2.23,Pygments==2.19.2,PyYAML==6.0.3,referencing==0.36.2,resolvelib==1.0.1,rich==14.3.3,rpds-py==0.27.1,selinux==0.3.0,subprocess-tee==0.4.2,typing_extensions==4.15.0,wcmatch==10.1
+py39-ansible70 run-test-pre: PYTHONHASHSEED='3658349698'
+py39-ansible70 run-test: commands[0] | molecule test -s compatibility --destroy always
+WARNING  Driver podman does not provide a schema.
+INFO     compatibility scenario test matrix: destroy, create, converge, destroy
+INFO     Performing prerun with role_name_check=1...
+INFO     Running compatibility > destroy
+INFO     Sanity checks: 'podman'
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': 'j492718458086.7429', 'results_file': '/root/.ansible_async/j492718458086.7429', 'changed': True, 'item': {'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Running compatibility > create
+
+PLAY [Create] ******************************************************************
+
+TASK [get podman executable path] **********************************************
+ok: [localhost]
+
+TASK [save path to executable as fact] *****************************************
+ok: [localhost]
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Log into a container registry] *******************************************
+skipping: [localhost] => (item="ubuntu2404 registry username: None specified") 
+skipping: [localhost]
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item=Dockerfile: None specified)
+
+TASK [Create Dockerfiles from image names] *************************************
+skipping: [localhost] => (item="Dockerfile: None specified; Image: geerlingguy/docker-ubuntu2404-ansible:latest") 
+skipping: [localhost]
+
+TASK [Discover local Podman images] ********************************************
+ok: [localhost] => (item=ubuntu2404)
+
+TASK [Build an Ansible compatible image] ***************************************
+skipping: [localhost] => (item=geerlingguy/docker-ubuntu2404-ansible:latest) 
+skipping: [localhost]
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item="ubuntu2404 command: ")
+
+TASK [Remove possible pre-existing containers] *********************************
+changed: [localhost]
+
+TASK [Discover local podman networks] ******************************************
+skipping: [localhost] => (item=ubuntu2404: None specified) 
+skipping: [localhost]
+
+TASK [Create podman network dedicated to this scenario] ************************
+skipping: [localhost]
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=ubuntu2404)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) creation to complete (300 retries left).
+changed: [localhost] => (item=ubuntu2404)
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=9    changed=3    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+
+INFO     Running compatibility > converge
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ubuntu2404]
+
+TASK [Include role] ************************************************************
+
+TASK [vector-role : Get vector distrib] ****************************************
+changed: [ubuntu2404]
+
+TASK [vector-role : Update apt cache] ******************************************
+changed: [ubuntu2404]
+
+TASK [vector-role : Install vector] ********************************************
+ok: [ubuntu2404]
+
+TASK [vector-role : Deploy vector configuration] *******************************
+changed: [ubuntu2404]
+
+TASK [vector-role : Flush handlers] ********************************************
+
+RUNNING HANDLER [vector-role : Start vector service] ***************************
+changed: [ubuntu2404]
+
+PLAY RECAP *********************************************************************
+ubuntu2404                 : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Running compatibility > destroy
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': 'j357361885100.9036', 'results_file': '/root/.ansible_async/j357361885100.9036', 'changed': True, 'item': {'cgroupns_mode': 'host', 'command': '', 'image': 'geerlingguy/docker-ubuntu2404-ansible:latest', 'name': 'ubuntu2404', 'pre_build_image': True, 'privileged': True, 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:rw']}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
+_______________________________________________________________________________________ summary _______________________________________________________________________________________
+  py39-ansible80: commands succeeded
+  py39-ansible70: commands succeeded
+  congratulations :)

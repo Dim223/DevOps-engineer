@@ -1,0 +1,14 @@
+---
+- name: Verify Vector role
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check if Vector configuration file is valid
+      command: vector validate --no-environment --config-yaml /etc/vector/vector.yaml
+      register: vector_validate
+      failed_when: "'errors' in vector_validate.stdout"
+
+    - name: Check if Vector service is running
+      command: systemctl is-active vector
+      register: vector_status
+      failed_when: "'inactive' in vector_status.stdout"

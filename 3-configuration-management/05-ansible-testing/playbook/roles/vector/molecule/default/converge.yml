@@ -1,8 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  gather_facts: true
+  gather_facts: true  # Включите сбор фактов
   tasks:
-    - name: "include vector-role"
-      include_role: 
+    - name: Include role
+      include_role:
         name: vector
